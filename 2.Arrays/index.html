@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Arrays</title>
+    <style media="screen">
+      body {
+        margin: 0;
+        background: #000;
+        overflow: hidden;
+      }
+      video {
+        position: fixed;
+        width: 100%;
+        z-index: -100;
+       /*
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          min-width: 100%;
+          min-height: 100%;
+          width: auto;
+          height: auto;
+          z-index: -100;
+          transform: translateX(-50%) translateY(-50%);
+       background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
+        background-size: cover;
+        transition: 1s opacity;
+      */
+      }
+      .stopfade {
+         opacity: .9;
+      }
+
+      .opciones {
+        width: 100%;
+        position: absolute;
+        height: 20%;
+        bottom: -10%;/*-10%*/
+        background-color: rgba(0,0,0,0.5);
+        transition-duration: .7s;
+      }
+
+      .opciones:hover {
+        bottom: 0;
+        background-color: rgba(0,0,0,0);
+        transition-duration: .7s;
+      }
+
+      .opciones2 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      .iconoOpciones{
+        position: absolute;
+        /*padding:2% 2% 1rem 2%*/
+        margin-left: 46%;
+        width: 35px;
+        height: 35px;
+        padding: 1rem;
+        border-bottom: solid 1px white;
+      }
+
+      #polina {
+        font-family: Agenda-Light, Agenda Light, Agenda, Arial Narrow, sans-serif;
+        font-size: 1.2rem;
+        font-weight: 100;
+        position: absolute;
+        border: solid 1px rgba(0,0,0,0);
+        background: rgba(0,0,0,0.6);
+        color: white;
+        border-radius: 3px;
+        transition: 0.5s ease-in-out;
+        margin: 16px;
+        top: 50%;
+
+        padding: 2%;
+        padding-top: .4rem;
+        left: 77%;
+        width: 15%;
+        height: 600px;
+      }
+      #polina:hover {
+        border: solid 1px white;
+        transition: 0.5s ease-in-out;
+        background: rgba(0,0,0,0.7);
+        top: -500px;
+      }
+
+      .iconoInfoDiv{
+        width: 40px;
+        height: 45px;
+        margin: auto;
+      }
+
+      .iconoInfo{
+        height: 35px;
+        width: 35px;
+      }
+      h1 {
+        font-size: 2rem;
+        text-transform: uppercase;
+        margin-top: 0;
+        letter-spacing: .3rem;
+        margin-bottom: 0.5rem;
+      }
+      .subTitle{
+        font-size: 1.3rem;
+        margin-top: 0;
+        margin-bottom: 2.5rem;
+      }
+      .link{
+        display: inline-block;
+        color: #fff;
+        font-style: italic;
+        text-decoration: none;
+        padding: 0;
+        transition: .6s background;
+      }
+      .link:hover{
+        color: orange;
+        cursor: pointer;
+      }
+      .credits{
+        padding-left: .5rem;
+        margin-top: 3rem;
+      }
+      .scroll{
+        overflow: hidden;
+        height: 200px;
+      }
+      .scroll:hover{
+        overflow-y: scroll;
+      }
+      .scroll p{
+        margin-top: 0;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-thumb{
+        background:white;
+
+      }
+      /*::-webkit-scrollbar-track {
+        border: solid 1px;
+        border-color: white ;
+      }*/
+      /*::-webkit-scrollbar-thumb:hover {
+        background: #88ba1c;
+      }
+      ::-webkit-scrollbar-corner {
+        background: white;
+      }*/
+
+      #pausa {
+        width: 37%;
+        right: 46%;
+      }
+      button {
+        margin: 1rem auto;
+        font-size: 1.3rem;
+        font-weight: 500;
+        position: absolute;
+        border: solid 1px rgba(0,0,0,0);
+        background: rgba(0,0,0,0.6);
+        color: #fff;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: .3s background;
+        margin: 16px;
+        top: 50%;
+        padding: .4rem;
+        cursor: pointer;
+      }
+      button:hover {
+         background: rgba(0,0,0,0.9);
+         border: solid 1px white;
+         transition: all 0.3s ease-in-out;
+      }
+      .iconoSiguiente{
+        height: 1rem;
+        width: 1.4rem;
+      }
+      #botonSiguiente{
+        width: 10%;
+        right: 22%;
+      }
+      .iconoAnterior{
+        height: 1rem;
+        width: 1.4rem;
+      }
+      #botonAnterior{
+        width: 10%;
+        left: 2%;
+      }
+      .iconoSilencio{
+        height: 1rem;
+        width: 1.1rem;
+      }
+      #botonSilencio{
+        width: 10%;
+        right: 34%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <video id="reproductor" autoplay>
+      <source src="" type="video/mp4">
+      <!--<track src="ccSubs_com_google-year-in-search-2016_es.vtt" label="Español" srclang="en" kind="subtitles"></track>-->
+    </video>
+    <div class="opciones">
+      <div class="opciones2">
+        <div>
+          <img class="iconoOpciones" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAABjUlEQVRoQ+2Y600DQQyEPRVACVABpBIoBSqBUqCShA5CBUAFRo4uEJ2Isn4ty2H+RfLr83jR6EAL+cNCOKhARlOyFClFkjaQdlrMfEFED0R0Pc2+IaJ7ANsMlhSQCWJNROezod+JaJUBkwXyREQ3Rzb/DOA2WpUvEGaWDe7PwNQHwK4eM7/9oMa+5hbA5RTHpkbfSRsAK/l5CCI3fOUpfAAiJ3R2pNYrAHk/AuwFeQGwW/7yTsujxDx3euyi8FyVDznfP/PYp7OR83mc/fu9y4BIO61IdVtrpbyR1uaRcQUSuc2IWqVIxBYjawyniNU1DwXicc2jgZhdc6j7td68wzXnuN8AEK1rznW/ViBm9p+WtXlknsc1D/XYPa55OBCrwgVi3VxWXimStVlr3f+piNWZWresyWtWxONMNQNZYzUgZvtgHU6Td9L9OpypZg5rbLv7/YXvuRoovfv1OFPNZNZYzRuRT6Bdv+dqoJpBPM5UM5A1VgVibdIjr0B6bFnToxTRbKtHbCnSY8uaHp++QrozL1DJPgAAAABJRU5ErkJggg=="/>
+        </div>
+        <div id="polina">
+          <div class="iconoInfoDiv">
+            <img class="iconoInfo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAEoklEQVRoQ+2a7VVUQQyGkwq0A6UCoQKlArUCoQK1ArECtQK1AqECoQKhAqECtYJ4nj3JPZnZe3fnfqwc0fzhY++dyZu8yWSSVbkjoncEh/wH0udJM3sqIvsi8kRE7vvv+dFLEfkpIucicqmqZ0sxYrZHzAylX4jI0USlPonIZ1UF3GSZDMTMnonIOxF5mHa/CGuLyLWq4oFOzAxv8Tw/ef9R+vhaRF6r6ukUNKOBmBmKfHT6sOeNiLwXkVNVRZlm8bUA9EpEHviLeOZ47FqjgJgZ9MEL8P8XCqgq1JgtvjYGuedxBJhm7zQDMTMAYDnks4MgcDN1APjYaYPncsBHoOM1vLcW6GbG8xiGpIGcqOrbFis1ATEzqBTBjKUKLzj33ziAln3jGSz+tieW2Is9kU+qerxt0a1AzAx3v3QqPcvZxTkOgKkZK/TDMADqYsyTCf+Hanx2sgnMRiDO27DMYQWCtPvF6bPNYC2fQ9Pn1R4kAvZA+GwwZgaBuLW/uaIFncwMD+GpXQgJ5EMsnIwJ0IOhbLYJyFdPsRxWHXXMjIAn8HcpnCedocwMinHonqvqYd/GvUCcn7iUFPtQVVfZyU9xALYKmSkUwgCRjVre76js2Yz4IV56KTYE5LufwB2lKqq1KMIzXZCaGcFKYmiVgkqJYtRoB/Uia0CS1W9UtSs/kntbFZkLhPdrWuMVKoAi8fBgH5DgY8dTPycI/LEyxyOxFwG+qtlSfBYAh4CYr7AXGcLMSHtj+B1KLAHkTFVJwwCBIdBeVLVwQvFHCvILVeWc4GXKhh9jXeHPLwGkUNrM8A5Vc0GvGkgEZFYgH0pj8SwCJGeqlDSK074GQglN0deluIlBviS1iqDvY81ajJgZAc2lJwdYgBvrjSWyVuyZqY5+6Fmk4dojq0DPgZTA3SaQQmkzW9OzBUhksdsEUhv33wYS6e42PXKlqsTGSlqoFUr/DcFegNt1+iXjRb+KA3Z1yE6QriRpTb9LH4gTdO59JZ9rcfXeeCDGKb5UibIIkIHjYLhEyYEkIksUjUsAGV80OpAly/h8Q+S6zHV1rEwu4wlIrrP0bvdSyguAYxSZWzTWF6u4uW6/WLlX4iZWX3VJz9ybW2UOEPoF++lOFE27Iu2GItuaD9ybiZWpzQe8GF1Jmg+rC1Kj1M0HvMHdqL354F6JqrdoWf6hdlDdR6OjgxG6bFobY1uDLqhUL7zL3la9V1CqoFozEPfKYMvSuy3c5cfEzCZWoWjdW57fMk3ZKk5S4qSYWXgzgGpgSlrNoBhTMEKom9j0nYmLeU3sgdQ7NFYA0NhOC+cMAOoRXR4rrLV++ty6dayQwOROIZmIvlcx6El0hBIx6Ik54ZVPomLQs9ZZ944NXojsttUTG9PvEJGrmQUg6JxDi9liZtATGsdY72gno7fkGSyNR+i2IFgYBaiJpgxDoSNZMNqzTIYBMWqtZmrVJnfvACCmsTwC16EMP+kd942neT7G092tT0SgHvHSPADNOk0GkjxEbTa1IGQZqMmheztfGOgLCj9b4iYI1/MXAnglAn51c5yr/KIemR3lCy0wm1oL6TF7mTsD5DeHBsNR5yik8wAAAABJRU5ErkJggg==" />
+          </div><br/>
+          <h1 id="titulo"></h1>
+          <p id="subTitulo" class="subTitle"></p>
+          <p><a class="link" href="https://trends.google.com/trends/yis/2016/GLOBAL" target="_blank">Original page</a>
+          <p><a class="link" href="https://goo.gl/v9kg3q" target="_blank">Music: Grace VanderWaal - Light The Sky</a></p>
+          <p class="credits">C R E D I T S:</p>
+          <div id="creditos" class="scroll"></div>
+        </div>
+        <button id="pausa">Pause</button>
+        <button type="button" id="botonSiguiente">Siguiente
+          <img class="iconoSiguiente" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAC9ElEQVRoQ+2Z/XHUMBDF91UAHQAVkFRAUgGkAqACoAKgAqACQgUJFRAqIFQAdAAVPObNyBnjW2nX8pnLzZz+ta3bp/3tlw625wt7br8dBOzagwcP7J0HSL4wsxMAZ3OMJ3liZu/M7BTA7znftt5NI0Tyvpl9lPFlw1cA3keGkLxrZq/N7GV593Ku+MUCyqm/MTMZMyyd4jGAn7UfKKcu0RI/XmcALiPxmeehB0jqhx5XNrsGcOw9IynBOnlvSfyDbaCUESDXi93aegtAxv6zyul/aXx3BeA0c8rbQOjKzB41NhJK146Ilhf0eiqOtiFADMvAOx0o6buHDZSacRR5KERo2IDkEzO7aGz4AcCQaW5eI3lkZt/WQiktQAYEAa1XlOOF2zQeIpTcOIpOX8/nClAaVdqsoaRnQmKjUJFsoSRb3DiKRMwSULwQoXQO4LnjBaEk78yOo8VB7BhzbmZPGxu7hYpkV0peQ4BQEhL3GtnFLVQko5TsxlFNxGyERllJPVGrULk9T+mpWim5GkeeiG4BJR7UzKk7rS23UCVQclPyGgIyKLmFqjclT0Us8kDxQoSS2/OUNruVklMN32IBRURXoUpU93B2uO0CPgNQ3amuxQISbfNXAMMUd2NIQejHZEgaG/pHg1A0MywSUIxQozaduAZDZMSRN7WRVGPYOt1UPVgqYH/TaAIdl99SyOS18Xw9RudX8Vrq5qLLA0l0XH5JqnpvxMRIQQqd4f1eAbppeLaXzVwid38CsCGuTGY6/Ro63wGo5Z61Znkgkfqq/JIU9y0D1x9oelNfcEekE19/pEyg0zvUu4Uuy1EKoQQ6VX4DdKqFbtsCotR3ey+2EsNH79XiInTSdSAYPFrotFrsVKOWwSgbA7pNkEHjK5GQ39Ju6AZjOvz/v+v10RCvjlPGDJe8qYvZkgAkfpidwx4/c/JphKablZjQX0zNQcP5Tv2Puld9m2rUMkJSCGU22tU7BwG7OvnuGNi1wdPfPyC0a4/8BbQGdkCGco6IAAAAAElFTkSuQmCC"></button>
+        <button type="button" id="botonAnterior">
+          <img class="iconoAnterior"
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAC5UlEQVRoQ+1Z0XFUMQzUVgAdECogqQBSAaQCkgoIFRAqgFRAqCChApIKCBUAHUAFyyzjm/E4sq3n80GOOf/e8zutdrWS/WBbvrDl8dsOwL9mcMfAf8UAyYdm9tnMXgO4XgKO5KWZXQM4X7JvqoRSEC9SAO/N7C2An72ASJ6a2bv0nICfAPje26ffpwEgqcCVxXwpCAVTZYPknpl9MTOxt1oCfRZhYwqAJJ1vRRA5EDFx5mWUpILfr2T7E4AVo+4jswBI988alB96LJAUqDeNfaolSbG61gZQ6Nf7Izf7JJV1Zb+2bgC0kvJn31oAKvrNA/oK4I48MreqSeeXme1FDGBdAD3pHAC4LVNMUrJ41cj+EYCrjbpQQL816UgWAl5b3cLNNw4xENBvSzrSvazTW2HprDaPAmhZn4LY9xoRyQ9mdjxDOsMAAtJxra/S6HIsHwG0wK3fB0j29OtaX6DR/UisdceOEkVYQimInn5r0tGI0eqobqOb6kIB66tJJx/UvJjOAeiZoRViICAd1/oCjW5YOuEiDui3an0khxrdEiq6DBQzvvdut2sG3Ko6oc4GoJb+fKl33ycAOmjoYPKgAkLW99gbvEjqIPO0Ad6dlaYyoJcFivgKwFH5x6mINczVwCsxArHY/8NFvHpwq200sSApKZuPGlJSNu8cxkn26mjzjSwoJV2LHDpS6tXRsJS6NuoEM3SODQxzFwBOlhSwnl0MIDEhKT0ZkNKFmb1casktUKMAegfyWwAHFSn16si15BqIIQCJhZ6URo+UriVPB5BADDWqgCVv/lCfAOhs22pULSkJfKuOQlIallDW4Hrz/ujFlmvJpZTWBhCU0v29Wsy6dGvga13utiy5e0c0hYEEwrte14nrOHC9XtaRDkm6Xm9e7A43spqlFTOPvrQoiO6kWVwQ3yTQf/cDRyYlucvpwCcmDXwq3G7W8wROk9DSGWbW8zsAszI5+p4dA6OZm7Vv6xn4Dd8IfkABCJmaAAAAAElFTkSuQmCC">Anterior</button>
+        <button type="button" id="botonSilencio">Audio
+          <img id="silencio" class="iconoSilencio"
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACoUlEQVRoQ+2Z/VHcMBDF91UQ0kGoIKSDUEHSQZIKgAqADpIKgA7SQaCCQAWQDtLBMo+xMjp5Ja18cs7HWDP3z51Pfj/vp9aQPV/Yc/2yAuzagqsFXrUFVPUrgOsYUlV/icitiNyLyB2Av9s8hNlciOJF5ArAxj1UVRPBBLwBQKjmNQtAEE81DoAgmgDfADy1UHQHiMU3AgTdFwAuvRBdAVLxGYDPIvJx+LzPCKVbnXnioxuAJd4CSAKaIIyVLwYIg/y4BtEFICe+BhBEqyqtwqf+JgG5BXBccqetAUrivQC8TlUPhvSautUlgIscxFYANfEtABUIupKZZicDeMS3AkQQTKWxO2VdaRKAV3wmC13VCpeqMrhZseNlWqEZoEV8pQ58B3CW821VZVDH2cm0wgjAKPXemmJeV6nE9wA+WH9U1Xci8pj89jZNq7sGoL4fAE4zEKwFcVZiq7HRHC4BgNoPrR5IVZk+zyM4Nn0sfP/WUgBMKxjBzPabAb44gCcAh6kbqeqRiPyOvh/FzFIsMGq7g+g0qaRJYQWo5VjngeYPAKbNjWW40AMAutXiYmDvg3iv02ipkDEDxS6zuEI2KkxR9pnWStSCsmMzVzyoGM3cqIi9NIs1wZke5WXm4/mvkYXY9/wsjU9mbacjE7sgUoAa9HC0ZBfKI2ZY5tOfbIEWiBaAQTwPMhu5fphO9D1SeiG8AAXx8x3qPRAegGGswpiK3YbbZ10n3HtSELcEdglgCNYTEeFcKF0PnN79l8FWyRJGFvoUjRZTXw9b3YjIaU381kHssYSzmYu3Kvp8es9uLhRvPHG8fsc56c7H66k7OSxAd7le1AuOGMJ4xcR8Hj48Ii7zFVOt4vb6fZYY6CXOs88K4HlKc16zWmDOp+vZ+xn0NJxA9SavLAAAAABJRU5ErkJggg=="></button>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var pauseButton = document.getElementById("pausa");
+      var siguienteButton = document.getElementById("botonSiguiente");
+      var anteriorButton = document.getElementById("botonAnterior");
+      var silencioButton = document.getElementById("botonSilencio");
+      var iconoSilencio = document.getElementById("silencio")
+      silencioButton.addEventListener("click", audio);
+      var reproductor = document.getElementById("reproductor");
+      class video{
+        constructor(link, titulo, subTitulo, credits){
+          this.link= link;
+          this.titulo= titulo;
+          this.subTitulo= subTitulo;
+          this.credits= credits;
+        }
+      }
+      var vid3 = new video("Google - Year In Search 2014.mp4", "year in search", "by Google 2014", "blablalbalba");
+      var vid2 = new video("Google - Year In Search 2015.mp4", "year in search", "by Google 2015", "Syrian Refugee Crisis<p>First two female soldiers graduate Army Rangers School<p>Special Olympics World Games<p>Confederate Flag Removed from SC Statehouse<p>Cecil the Lion<p>Mad Men series finale <p>Letterman’s final show<p>Stuart Scott @ the ESPYs<p>Black Lives Matter<p>#ilooklikeanengineer <p>FIFA Women’s World Cup <p>Water on Mars <p>Cuban Embargo lift  <p>Marriage equality <p>Isabella’s 3-D printed arm <p>“The Dress” <p>Star Wars: “The Force Awakens” <p>Pope Francis’ visit to the US <p>Je Suis Charlie  <p>Kenyan vigil  <p>Beirut vigil  <p>Paris vigil in London <p>Caitlyn Jenner @ the ESPYs <p>Rugby World Cup <p>Nae Nae <p>Aid for Nepal  <p>Holly Holm  <p>Shia LaBeouf  <p>The Warriors, NBA Champions. <p>Drake, Hotline Bing <p>Miss Universe Japan ");
+      var vid = new video("Google - Year In Search 2016.mp4", "year in search", "by Google 2016", "<p>Brexit - Ruptly<p>Trump & Hillary Supporters - Associated Press (AP)<p>US Election map: ABC<p>BLM Protesters - AP<p>Dallas PD Vigil - Ruptly<p>Dallas PD memorial - IT<p>Refugees welcome - Shay Murphy  <p>Justin Trudeau at pride - Canadian Press<p>Hillary Clinton @ DNC - CNN<p>Doaa Elghobashy @ Olympics - AP  <p>Simone Biles performance - USA Gymnastics  <p>Prince with guitar - Richard E. Aaaron  <p>Special thanks to www.alicenter.org/<p>Ali with mic - AP  <p>Bowie with Lighting Bolt - Duffy Archive & Bowie Archive<p>Aziz Ansari w/ Lighting - Photo by Crackerfarm/Under The Table<p>Additional Lighting Makeup shot - Dade Freeman<p>Bear and Deer - JukinMedia<p>Secret Life of Pets available on Google Play<p>Zianna Speaks to City Council - CNN<p>Refugees at Sea - Vice News<p>Border embrace - ITN/Reuters<p>Dallas Protest - Dallas Morning News</p>");
+      var vid0;
+      var vid01;
+      var j = 1;
+      var t = 1;
+      reproductor.src = vid.link;
+      reproductor.muted= true;
+      titulo.innerHTML = vid.titulo;
+      subTitulo.innerHTML = vid.subTitulo;
+      creditos.innerHTML = vid.credits;
+
+      pauseButton.addEventListener("click", function(){                        /*PAUSA*/
+        reproductor.classList.toggle("stopfade");
+        if (reproductor.paused) {
+          reproductor.play();
+          pauseButton.innerHTML = "Pause";
+          } else {
+          reproductor.pause();
+          pauseButton.innerHTML = "Paused";
+        }
+    })
+
+    reproductor.addEventListener('ended', function()                                  /*FIN*/
+    {
+      reproductor.pause();
+      vidFade();
+    });
+
+    siguienteButton.addEventListener("click", function(){                    /*SIGUIENTE*/
+      reproductor.pause();
+      vidFade();
+    })
+
+    anteriorButton.addEventListener("click", function(){                      /*ANTERIOR*/
+      reproductor.pause();
+      vidFada()
+    })
+
+    function vidFada() {                                                      /*VIDFADA*/
+      reproductor.currentTime= 0;
+      vid3= vid2;
+      vid2=vid;
+      vid=vid0;
+      vid0=vid01;
+      reproductor.src = vid.link;
+      titulo.innerHTML = vid.titulo;
+      subTitulo.innerHTML = vid.subTitulo;
+      creditos.innerHTML = vid.credits;
+      audioReinicio();
+      audio();
+      reproductor.play();
+    }
+
+    function vidFade() {                                                      /*VIDFADE*/
+      reproductor.currentTime= 0;
+      vid01=vid0;
+      vid0= vid;
+      vid= vid2;
+      vid2= vid3;
+      reproductor.src = vid.link;
+      titulo.innerHTML = vid.titulo;
+      subTitulo.innerHTML = vid.subTitulo;
+      creditos.innerHTML = vid.credits;
+      audioReinicio();
+      audio();
+      reproductor.play();
+    }
+
+    function audio(){                                                         /*AUDIO*/
+      if(j==0){
+        reproductor.muted= true;
+        j= 1;
+          iconoSilencio.src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACoUlEQVRoQ+2Z/VHcMBDF91UQ0kGoIKSDUEHSQZIKgAqADpIKgA7SQaCCQAWQDtLBMo+xMjp5Ja18cs7HWDP3z51Pfj/vp9aQPV/Yc/2yAuzagqsFXrUFVPUrgOsYUlV/icitiNyLyB2Av9s8hNlciOJF5ArAxj1UVRPBBLwBQKjmNQtAEE81DoAgmgDfADy1UHQHiMU3AgTdFwAuvRBdAVLxGYDPIvJx+LzPCKVbnXnioxuAJd4CSAKaIIyVLwYIg/y4BtEFICe+BhBEqyqtwqf+JgG5BXBccqetAUrivQC8TlUPhvSautUlgIscxFYANfEtABUIupKZZicDeMS3AkQQTKWxO2VdaRKAV3wmC13VCpeqMrhZseNlWqEZoEV8pQ58B3CW821VZVDH2cm0wgjAKPXemmJeV6nE9wA+WH9U1Xci8pj89jZNq7sGoL4fAE4zEKwFcVZiq7HRHC4BgNoPrR5IVZk+zyM4Nn0sfP/WUgBMKxjBzPabAb44gCcAh6kbqeqRiPyOvh/FzFIsMGq7g+g0qaRJYQWo5VjngeYPAKbNjWW40AMAutXiYmDvg3iv02ipkDEDxS6zuEI2KkxR9pnWStSCsmMzVzyoGM3cqIi9NIs1wZke5WXm4/mvkYXY9/wsjU9mbacjE7sgUoAa9HC0ZBfKI2ZY5tOfbIEWiBaAQTwPMhu5fphO9D1SeiG8AAXx8x3qPRAegGGswpiK3YbbZ10n3HtSELcEdglgCNYTEeFcKF0PnN79l8FWyRJGFvoUjRZTXw9b3YjIaU381kHssYSzmYu3Kvp8es9uLhRvPHG8fsc56c7H66k7OSxAd7le1AuOGMJ4xcR8Hj48Ii7zFVOt4vb6fZYY6CXOs88K4HlKc16zWmDOp+vZ+xn0NJxA9SavLAAAAABJRU5ErkJggg==";
+      }
+      else{
+        reproductor.muted= false;
+        j = 0;
+          iconoSilencio.src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAADCUlEQVRoQ+2Z/XHUMBDF91UAJSQVQCogHQAVkFRAUgHQQaiA0EFSAUkFhApIB0AFy7wZG2R5V17JH3c3E8/kj9zppP3p7ZdkyIE/OHD75Qlg1wq6CqjqFxG5B3C9ayNL65sAnfFn3Q/P9xliBJAZ38M3QajqWQ6vqh9E5EFEfgB4nKuuBcCdp/vkTxUEjec8AAZrqKomExPgSkS+AvjdAuO50CyI3ngaNAGQ2kyQT7UgpSBugkiNrwTgcCpyCeAmqkaxDuTGJJOa7mSNNxT4KCIvReRURJ45hl4DOI9ATBayGogIQGpUN55KvzKMDUFMAnDiORC5AtauquobEWG9yRWZhAgBzIGIAHTzPxeROxF5kUEWs18YoBUiClCAYHo98WpGFUALRG0VV1UqwWyUuhPrRN8ZDASqBugg6K/vWopdV+lpEN3FfFSVGepb9uWxpUI1QCGg+/WKPptU4isAlwWIfJNMFaxWIi31kVRsjXEhslbiAcCJk5mORORn+p0VT2sBcF2v2OUb9BnAhQPBpi/NSm/zKr0mgAnhuKDp36rKqs3utX9GsGsDRCFMFYxg5gGLAf7v2QIgAvEI4Dh3I1Vlz/Q9+XxnAJMQXsHLgn7Unm+lgJtivYNP/4N9A/CUOLUKW1eVfyUu9AcAK/XmMZC7d+h4ui9BzINJ0xlbVXnMfJ/Qj6rx6jHA4Kw5T6RSqSorMSuyG0ObAHD1WohoQ7dGMzfw9zQ91kAYY28B8OQ2nD//IPJ/oCP9nyXG90Lh245sHTPwqxVI8rNniKtA4LcjIzuICwCsyqOnGWDCr10FGiGOFjtS5lsw5U6lM3FNTHiuPUuBwG6OepeKDQgVu0UASu40oQBbY/b7gxa5lPcXyUKenJGbOVV93RlMo83AzOZf7l6oJcVW3E6XpnchFnOhdPXG6/V7EeERkq1DuHdaBSCNiYACt3zJkbbTNdlpNYAewnjFxAst3jbw78Z7oeFATHejET/fakwGEbvY2sq46DodBE9sy92NRhffYtyqMfAEENiBg1fgL3bb80ALO/KXAAAAAElFTkSuQmCC";
+      }
+    }
+
+    function audioReinicio(){                                                 /*AUDIOREINICIO*/
+      if (j==0) {
+        j= 1;
+      } else {
+        j= 0;
+      }
+    }
+    </script>
+  </body>
+</html>
