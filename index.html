@@ -129,7 +129,6 @@
 			#polina:hover {
 				border: solid 1px white;
 				background: rgba(0, 0, 0, 0.7);
-				//top: -64vh;
 				bottom: 16px !important;
 			}
 			#polina p {
@@ -192,16 +191,6 @@
 			::-webkit-scrollbar-thumb {
 				background: white;
 			}
-			/*::-webkit-scrollbar-track {
-				border: solid 1px;
-				border-color: white ;
-			}*/
-			/*::-webkit-scrollbar-thumb:hover {
-				background: #88ba1c;
-			}
-			::-webkit-scrollbar-corner {
-				background: white;
-			}*/
 			@media (max-width: 1400px) {
 				span {
 					display: none;
@@ -310,14 +299,14 @@
 			}
 			var vid3 = new video(
 				//"https://youtu.be/DVwHCGAr_OE",
-				"./2.Arrays/Google - Year In Search 2014.mp4",
+				"./src/Google - Year In Search 2014.mp4",
 				"year in search",
 				"by Google 2014",
 				"<p>Two people hugging: Dida Mulder<p>Boy with 3D Printed hand: E-NABLE/RIT University News/RIT MAGIC Center<p>Ebola doctors and patients: Plan International<p>Perth passenger train footage: vision courtesy of the Public Transport Authority of Western Australia<p>Malala Yousafzai collecting the Nobel Peace Prize: Nobel Media AB<p>Bill Nye's voice over: Big Think"
 			);
 			var vid2 = new video(
 				//"https://www.youtube.com/embed/q7o7R5BgWDY",
-				"./2.Arrays/Google - Year In Search 2015.mp4",
+				"./src/Google - Year In Search 2015.mp4",
 				"year in search",
 				"by Google 2015",
 				"<p>Syrian Refugee Crisis<p>First two female soldiers graduate Army Rangers School<p>Special Olympics World Games<p>Confederate Flag Removed from SC Statehouse<p>Cecil the Lion<p>Mad Men series finale <p>Letterman’s final show<p>Stuart Scott @ the ESPYs<p>Black Lives Matter<p>#ilooklikeanengineer <p>FIFA Women’s World Cup <p>Water on Mars <p>Cuban Embargo lift  <p>Marriage equality <p>Isabella’s 3-D printed arm <p>“The Dress” <p>Star Wars: “The Force Awakens” <p>Pope Francis’ visit to the US <p>Je Suis Charlie  <p>Kenyan vigil  <p>Beirut vigil  <p>Paris vigil in London <p>Caitlyn Jenner @ the ESPYs <p>Rugby World Cup <p>Nae Nae <p>Aid for Nepal  <p>Holly Holm  <p>Shia LaBeouf  <p>The Warriors, NBA Champions. <p>Drake, Hotline Bing <p>Miss Universe Japan "
@@ -325,7 +314,7 @@
 			var vid = new video(
 				//"http://v2v.cc/~j/theora_testsuite/320x240.ogg",
 				//"https://www.youtube.com/embed/KIViy7L_lo8",
-				"./2.Arrays/Google - Year In Search 2016.mp4",
+				"./src/Google - Year In Search 2016.mp4",
 				"year in search",
 				"by Google 2016",
 				"<p>Brexit - Ruptly<p>Trump & Hillary Supporters - Associated Press (AP)<p>US Election map: ABC<p>BLM Protesters - AP<p>Dallas PD Vigil - Ruptly<p>Dallas PD memorial - IT<p>Refugees welcome - Shay Murphy  <p>Justin Trudeau at pride - Canadian Press<p>Hillary Clinton @ DNC - CNN<p>Doaa Elghobashy @ Olympics - AP  <p>Simone Biles performance - USA Gymnastics  <p>Prince with guitar - Richard E. Aaaron  <p>Special thanks to www.alicenter.org/<p>Ali with mic - AP  <p>Bowie with Lighting Bolt - Duffy Archive & Bowie Archive<p>Aziz Ansari w/ Lighting - Photo by Crackerfarm/Under The Table<p>Additional Lighting Makeup shot - Dade Freeman<p>Bear and Deer - JukinMedia<p>Secret Life of Pets available on Google Play<p>Zianna Speaks to City Council - CNN<p>Refugees at Sea - Vice News<p>Border embrace - ITN/Reuters<p>Dallas Protest - Dallas Morning News</p>"
@@ -416,14 +405,13 @@
 				}
 			}
 
-			//document.getElementById("polina").style.bottom = PolHeight;
 			var VidHeight = document.getElementById("video").offsetHeight;
-			console.log(VidHeight);
+			//console.log(VidHeight);
 			var PolMaxHeight = (VidHeight / 100) * 95;
-			console.log(PolMaxHeight);
+			//console.log(PolMaxHeight);
 			document.getElementById("polina").style.maxHeight = PolMaxHeight + "px";
-			console.log(document.getElementById("polina").style.maxHeight);
-			//document.getElementsByClassName("scroll").style.height =
+			//console.log(document.getElementById("polina").style.maxHeight);
+
 			var PolHeight = document.getElementById("polina").offsetHeight;
 			var newStyle = "bottom:" + (55 - PolHeight) + "px;";
 			document.getElementById("polina").setAttribute("style", newStyle);
